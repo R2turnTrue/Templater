@@ -7,7 +7,7 @@ const remoteURL = await Deno.run({
     stdout: "piped"
 }).output()
 
-const remoteURLOutput = new TextDecoder().decode(remoteURL).split("\n")[0]
+const remoteURLOutput = new TextDecoder().decode(remoteURL)
 
 const remoteURLSegment = (remoteURLOutput.match(/(?<=\/)[\w-]+\/[\w-]+/) as string[])[0]
 
