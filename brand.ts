@@ -1,4 +1,3 @@
-import { dirname } from "https://deno.land/std@0.126.0/path/mod.ts";
 import { ensureFile } from "https://deno.land/std@0.126.0/fs/mod.ts";
 import { Input } from "https://deno.land/x/cliffy@v0.20.1/prompt/mod.ts";
 import { colors } from "https://deno.land/x/cliffy@v0.20.1/ansi/colors.ts";
@@ -14,8 +13,7 @@ const remoteURLSegment = (remoteURLOutput.match(/(?<=\/)[\w-]+\/[\w-]+/) as stri
 
 const generatePackageName = (projectName: string) => (projectName.match(/^(?:(?!Extension).)*/i) as string[])[0].toLowerCase()
 
-const fullDirectoryName = dirname(new URL('', import.meta.url).pathname)
-const directoryName = (fullDirectoryName.match(/\w+(?!\/)$/) as string[])[0]
+const directoryName = (Deno.cwd().match(/\w+(?!\/)$/) as string[])[0]
 
 const repoName: string = await Input.prompt(`Enter repository name${remoteURLSegment ? ` (${remoteURLSegment})` : ""}.`) || remoteURLSegment
 const projectName: string = await Input.prompt(`Enter the project name (${directoryName}).`) || directoryName
