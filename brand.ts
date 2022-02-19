@@ -1,7 +1,7 @@
 import { dirname } from "https://deno.land/std@0.126.0/path/mod.ts";
 import { ensureFile } from "https://deno.land/std@0.126.0/fs/mod.ts";
-import { prompt, Input } from "https://deno.land/x/cliffy/prompt/mod.ts";
-import { colors } from "https://deno.land/x/cliffy/ansi/colors.ts";
+import { Input } from "https://deno.land/x/cliffy@v0.20.1/prompt/mod.ts";
+import { colors } from "https://deno.land/x/cliffy@v0.20.1/ansi/colors.ts";
 
 const remoteURL = await Deno.run({
     cmd: ["git", "config", "--get", "remote.origin.url"],
@@ -10,7 +10,7 @@ const remoteURL = await Deno.run({
 
 const remoteURLOutput = new TextDecoder().decode(remoteURL).split("\n")[0]
 
-const remoteURLSegment = (remoteURLOutput.match(/[\w-]+\/[\w-]+$/) as string[])[0]
+const remoteURLSegment = (remoteURLOutput.match(/(?<=\/)[\w-]+\/[\w-]+/) as string[])[0]
 
 const generatePackageName = (projectName: string) => (projectName.match(/^(?:(?!Extension).)*/i) as string[])[0].toLowerCase()
 
