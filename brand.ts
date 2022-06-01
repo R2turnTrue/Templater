@@ -28,14 +28,14 @@ const paths = {
     properties: "./gradle.properties",
     readme: "./README.md",
     settings: "./settings.gradle.kts",
-    code: `./src/main/kotlin/world/cepi/${packageName}/${preferredMainClass}.kt`,
+    code: `./src/main/kotlin/xyz/r2turntrue/${packageName}/${preferredMainClass}.kt`,
 }
 
 await Deno.writeTextFile(paths.properties, `# suppress inspection "UnusedProperty" for whole file - used in extension.json
 kotlin.code.style=official
 name=${projectName}
 mainClass=${preferredMainClass}
-group=world.cepi.${packageName}
+group=xyz.r2turntrue.${packageName}
 version=1.0.0`)
 
 await Deno.writeTextFile(paths.readme, `# ${projectName}
@@ -77,11 +77,11 @@ await Deno.remove("./src/main/kotlin", { recursive: true })
 
 await ensureFile(paths.code)
 
-await Deno.writeTextFile(paths.code, `package world.cepi.${packageName}
+await Deno.writeTextFile(paths.code, `package xyz.r2turntrue.${packageName}
 
 import net.minestom.server.extensions.Extension;
 
-class ${projectName} : Extension() {
+class ${preferredMainClass} : Extension() {
 
     override fun initialize(): LoadStatus {
         logger().info("[${projectName}] has been enabled!")
