@@ -6,5 +6,5 @@ This rebrands an example extension with a few questions.
 ## Run
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Project-Cepi/Templater/main/brand.ts | deno run --allow-read --allow-write --unstable --allow-run -
+curl -fsSL https://raw.githubusercontent.com/R2turnTrue/Templater/main/brand.ts | deno run --allow-read --allow-write --unstable --allow-run -
 ```
